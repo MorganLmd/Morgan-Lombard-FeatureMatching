@@ -23,3 +23,9 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test
+    - run: dotnet publish ./src/Morgan.Lombard.FeatureMatching.Console/Morgan.Lombard.FeatureMatching.Console.csproj --self-contained true --output ./win-x64/feature-matching -c Release -r win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=true /p:PublishReadyToRun=true
+    - name: Upload Console Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Publish win-x64 Feature-Matching
+        path: ./win-x64/feature-matching
